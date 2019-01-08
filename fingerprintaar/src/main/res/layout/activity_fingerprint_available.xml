@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:background="@drawable/main_bg"
+    android:fillViewport="true"
+    >
+    <RelativeLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        >
+
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:visibility="gone"/>
+
+
+        <LinearLayout
+            android:id="@+id/main_content_linear_layout_final"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="50dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/screen_main_text3_bbl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="00dp"
+                android:text="Games Plaza Premium"
+                android:textColor="@color/yellow"
+                android:textSize="24dp"
+                android:textStyle="normal"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/amountToPay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:text=""
+                android:textColor="@color/yellow"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/screen_continue_txtview3_set_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="1dp"
+                android:gravity="center"
+                android:text="Click 'SUBSCRIBE NOW' to activate Games Plaza Premium and get unlimited access to all the games "
+                android:textColor="@color/yellow"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:visibility="gone"/>
+            <TextView
+                android:id="@+id/screen_continue_txtview3_set_three"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="1dp"
+                android:gravity="center"
+                android:text="This amount will be added to your next mobile bill or will be deducted from your pre pay balance "
+                android:textColor="@color/yellow"
+                android:textSize="16dp"
+                android:visibility="gone"/>
+
+            <Button
+                android:id="@+id/subscribe_now_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="20dp"
+                android:paddingLeft="40dp"
+                android:paddingTop="20dp"
+                android:paddingRight="40dp"
+                android:paddingBottom="20dp"
+                android:text="Subscribe now"
+                android:textSize="21dp"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/terms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="1dp"
+                android:gravity="center"
+                android:text="Purchase subject to G Plaza terms"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/support"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="1dp"
+                android:gravity="center"
+                android:text=""
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                android:visibility="gone"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+</ScrollView>
