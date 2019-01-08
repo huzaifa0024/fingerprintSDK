@@ -1,4 +1,8 @@
 apply plugin: 'com.android.library'
+// Required plugin in library module
+apply plugin: 'com.github.dcendents.android-maven'
+
+group='com.github.huzaifa0024'
 
 android {
     compileSdkVersion 27
