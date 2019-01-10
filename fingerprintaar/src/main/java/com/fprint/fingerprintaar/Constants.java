@@ -1,4 +1,4 @@
-package com.globalcharge.fingerprintaar;
+package com.fprint.fingerprintaar;
 
 /**
  * Created by GlobalCharge on 31/12/2018.

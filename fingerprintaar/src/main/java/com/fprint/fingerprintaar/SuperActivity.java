@@ -1,4 +1,4 @@
-package com.globalcharge.fingerprintaar;
+package com.fprint.fingerprintaar;
 
 import android.app.ProgressDialog;
 import android.content.pm.ActivityInfo;

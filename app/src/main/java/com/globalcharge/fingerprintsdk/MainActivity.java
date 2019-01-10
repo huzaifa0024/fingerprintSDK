@@ -7,8 +7,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.globalcharge.fingerprintaar.FingerprintCallBacks;
-import com.globalcharge.fingerprintaar.FingerprintSDKManager;
+import com.fprint.fingerprintaar.FingerprintCallBacks;
+import com.fprint.fingerprintaar.FingerprintSDKManager;
 
 
 public class MainActivity extends AppCompatActivity implements FingerprintCallBacks {

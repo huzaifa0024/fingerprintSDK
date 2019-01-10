@@ -1,8 +1,10 @@
-package com.globalcharge.fingerprintaar;
+package com.fprint.fingerprintaar;
 
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
+
+import com.fprint.fingerprintaar.SecuritySettingsSelectedListener;
 
 /**
  * Created by GlobalCharge on 25/10/2018.

@@ -14,7 +14,7 @@
  * limitations under the License
  */
 
-package com.globalcharge.fingerprintaar;
+package com.fprint.fingerprintaar;
 
 import android.app.Activity;
 import android.app.DialogFragment;
@@ -36,6 +36,8 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.fprint.fingerprintaar.FingerprintUiHelper;
 
 
 /**

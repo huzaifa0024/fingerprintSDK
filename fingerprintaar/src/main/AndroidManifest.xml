@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.globalcharge.fingerprintaar" >
+    package="com.fprint.fingerprintaar" >
 
     <uses-permission android:name="android.permission.USE_FINGERPRINT" />
     <application

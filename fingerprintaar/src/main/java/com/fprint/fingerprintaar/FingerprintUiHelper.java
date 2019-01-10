@@ -14,7 +14,7 @@
  * limitations under the License
  */
 
-package com.globalcharge.fingerprintaar;
+package com.fprint.fingerprintaar;
 
 import android.hardware.fingerprint.FingerprintManager;
 import android.os.CancellationSignal;

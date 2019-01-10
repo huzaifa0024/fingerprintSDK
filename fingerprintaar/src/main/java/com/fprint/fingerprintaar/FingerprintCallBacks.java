@@ -1,4 +1,4 @@
-package com.globalcharge.fingerprintaar;
+package com.fprint.fingerprintaar;
 
 import android.hardware.fingerprint.FingerprintManager;
 
