@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.fprint.fingerprintaar.FingerprintCallBacks;
 import com.fprint.fingerprintaar.FingerprintSDKManager;
+import com.fprint.fingerprintaar.SuperActivity;
 
 
 public class MainActivity extends AppCompatActivity implements FingerprintCallBacks {
@@ -22,7 +23,6 @@ public class MainActivity extends AppCompatActivity implements FingerprintCallBa
 
        //when u wanna show the dialog
         manager.startFingerprintAuthProcess();
-
 
     }
 

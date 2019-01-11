@@ -17,6 +17,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.voidlabs.phonesiminfolib.support.PhoneSimInfoManager;
+
 import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
@@ -61,6 +63,13 @@ public class FingerPrintAvailableActivity extends SuperActivity implements Secur
         setContentView(R.layout.activity_fingerprint_available);
 
         manager = HolderClass.getManager();
+
+        //Info manager initialization
+        PhoneSimInfoManager infoManager = new PhoneSimInfoManager.Builder(FingerPrintAvailableActivity.this)
+                .developer("Syed Huzaifa")
+                .appName("Test App")
+                .appVersion("1.0.0")
+                .build();
 
     }
 
