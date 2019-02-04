@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.hardware.fingerprint.FingerprintManager;
 import android.os.Build;
 
-import com.voidlabs.phonesiminfolib.support.PhoneSimInfoManager;
-
 import java.io.Serializable;
 
 /**

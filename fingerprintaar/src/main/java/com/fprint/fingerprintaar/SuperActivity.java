@@ -7,8 +7,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.voidlabs.phonesiminfolib.support.PhoneSimInfoManager;
-
 
 /**
  * Created by GlobalCharge on 25/10/2018.
