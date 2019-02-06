@@ -1,7 +1,7 @@
 apply plugin: 'maven-publish'
 apply plugin: 'com.jfrog.bintray'
 
-version '0.0.2'
+version '0.0.3'
 group 'com.fprint.fingerprint.aar'
 
 publishing {
@@ -47,6 +47,7 @@ bintray {
         version {
             name = this.version
             desc = "fingerprintaar ${this.version}"
+            vcsUrl = 'https://github.com/huzaifa0024/fingerprintSDK'
             released = new Date()
             vcsTag = this.version
         }

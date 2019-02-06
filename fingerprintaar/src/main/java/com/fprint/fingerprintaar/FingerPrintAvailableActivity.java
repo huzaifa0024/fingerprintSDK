@@ -353,5 +353,9 @@ public class FingerPrintAvailableActivity extends SuperActivity implements Secur
         }
     }
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        manager.getCallBacks().onCancelled();
+    }
 }

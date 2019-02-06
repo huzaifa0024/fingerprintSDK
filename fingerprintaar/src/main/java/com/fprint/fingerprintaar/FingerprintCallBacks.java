@@ -21,4 +21,6 @@ public interface FingerprintCallBacks {
 
     void onBypassTheFingerprintSDK();
 
+    void onCancelled();
+
 }

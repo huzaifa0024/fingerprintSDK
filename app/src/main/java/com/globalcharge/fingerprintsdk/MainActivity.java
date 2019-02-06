@@ -63,6 +63,11 @@ public class MainActivity extends AppCompatActivity implements FingerprintCallBa
     }
 
     @Override
+    public void onCancelled() {
+            Log.d("fingerprint","cancelled");
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1234) {
             if (resultCode == RESULT_OK) {
