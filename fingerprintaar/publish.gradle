@@ -1,7 +1,7 @@
 apply plugin: 'maven-publish'
 apply plugin: 'com.jfrog.bintray'
 
-version '0.0.3'
+version '0.0.5'
 group 'com.fprint.fingerprint.aar'
 
 publishing {

@@ -53,14 +53,30 @@ public class FingerprintUiHelper extends FingerprintManager.AuthenticationCallba
     public boolean isFingerprintAuthAvailable() {
         // The line below prevents the false positive inspection from Android Studio
         // noinspection ResourceType
-        return mFingerprintManager.isHardwareDetected()
-                && mFingerprintManager.hasEnrolledFingerprints();
+        try {
+
+            if (mFingerprintManager == null)
+                return false;
+            else
+                return mFingerprintManager.isHardwareDetected()
+                        && mFingerprintManager.hasEnrolledFingerprints();
+        }catch (Exception e){
+            return false;
+        }
     }
 
     public boolean isFingerprintHardwarevailable() {
         // The line below prevents the false positive inspection from Android Studio
         // noinspection ResourceType
-        return mFingerprintManager.isHardwareDetected();
+
+        try {
+
+            if (mFingerprintManager == null)
+                return false;
+            return mFingerprintManager.isHardwareDetected();
+        }catch (Exception e){
+            return false;
+        }
     }
 
     public void startListening(FingerprintManager.CryptoObject cryptoObject) {

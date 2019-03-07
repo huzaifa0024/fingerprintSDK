@@ -63,25 +63,33 @@ public class FingerprintSDKManager implements SecuritySettingsSelectedListener,S
     }
 
     private boolean checkCompatability(){
-        boolean osLowerThanM = Build.VERSION.SDK_INT < 23;
-        if(osLowerThanM) {
 
-            callBacks.osLessThanAndroidM();
+        try {
+
+            boolean osLowerThanM = Build.VERSION.SDK_INT < 23;
+            if (osLowerThanM) {
+
+                callBacks.osLessThanAndroidM();
+                return false;
+            }
+
+            mFingerprintUiHelper = new FingerprintUiHelper(
+                    mContext.getSystemService(FingerprintManager.class), null, null, null);
+
+
+            boolean hardWareNotAvailable = !mFingerprintUiHelper.isFingerprintHardwarevailable();
+
+            if (hardWareNotAvailable) {
+
+                callBacks.onHardWareNotAvailable();
+                return false;
+            }
+
+            return true;
+
+        }catch (Exception ex){
             return false;
         }
-
-        mFingerprintUiHelper = new FingerprintUiHelper(
-                mContext.getSystemService(FingerprintManager.class),null,null,null);
-
-        boolean hardWareNotAvailable = !mFingerprintUiHelper.isFingerprintHardwarevailable();
-
-        if(hardWareNotAvailable) {
-
-            callBacks.onHardWareNotAvailable();
-            return false;
-        }
-
-        return true;
     }
 
 
