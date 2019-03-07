@@ -102,21 +102,27 @@ public class FingerprintSDKManager implements SecuritySettingsSelectedListener,S
 
     public void startFingerprintAuthProcess()  {
 
-        boolean compatable = checkCompatability();
+        try {
 
-        if(!compatable)
-            return;
 
-        if(bypassAuthProcess==true) {
+            boolean compatable = checkCompatability();
 
-            getCallBacks().onBypassTheFingerprintSDK();
+            if (!compatable)
+                return;
 
-        }else {
+            if (bypassAuthProcess == true) {
 
-            Intent intent = new Intent(mContext, FingerPrintAvailableActivity.class);
-            HolderClass.setManager(this);
+                getCallBacks().onBypassTheFingerprintSDK();
 
-            mContext.startActivity(intent);
+            } else {
+
+                Intent intent = new Intent(mContext, FingerPrintAvailableActivity.class);
+                HolderClass.setManager(this);
+
+                mContext.startActivity(intent);
+            }
+        }catch (Exception e){
+            getCallBacks().onError(e.getMessage());
         }
 
     }
