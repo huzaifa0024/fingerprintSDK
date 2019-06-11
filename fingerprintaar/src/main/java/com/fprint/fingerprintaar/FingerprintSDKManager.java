@@ -140,7 +140,7 @@ public class FingerprintSDKManager implements SecuritySettingsSelectedListener,S
                 Intent intent = null;
 
                 if(showFPInsideActivity){
-                    
+
                     intent = new Intent(mContext, FingerPrintAvailableActivityWithoutDialog.class);
                     intent.putStringArrayListExtra(Constants.PRODUCT_DATA,productData);
 
