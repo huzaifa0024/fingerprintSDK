@@ -19,12 +19,14 @@ public class FingerprintSDKManager implements SecuritySettingsSelectedListener,S
     private FingerprintUiHelper mFingerprintUiHelper;
     private FingerprintCallBacks callBacks;
     private boolean bypassAuthProcess;
+    private boolean showFPInsideActivity;
     private ArrayList<String> productData;
 
 
     private FingerprintSDKManager(FingerprintSDKManager.Builder builder) {
         this.mContext = builder.mContext;
         this.callBacks = builder.callBacks;
+        this.showFPInsideActivity = builder.showFPInsideActivity;
         this.bypassAuthProcess = builder.bypassAuthProcess;
         this.productData = builder.productData;
 
@@ -41,6 +43,7 @@ public class FingerprintSDKManager implements SecuritySettingsSelectedListener,S
         Context mContext;
         FingerprintCallBacks callBacks;
         boolean bypassAuthProcess;
+        boolean showFPInsideActivity = false;
         ArrayList<String> productData;
 
         public Builder(Context context) {
@@ -56,6 +59,11 @@ public class FingerprintSDKManager implements SecuritySettingsSelectedListener,S
 
         public FingerprintSDKManager.Builder setCallBacks(FingerprintCallBacks callback) {
             this.callBacks = callback;
+            return this;
+        }
+
+        public FingerprintSDKManager.Builder setShowFpInsideActivity(boolean showFPInsideActivity) {
+            this.showFPInsideActivity = showFPInsideActivity;
             return this;
         }
 
@@ -131,7 +139,8 @@ public class FingerprintSDKManager implements SecuritySettingsSelectedListener,S
 
                 Intent intent = null;
 
-                if(true){
+                if(showFPInsideActivity){
+                    
                     intent = new Intent(mContext, FingerPrintAvailableActivityWithoutDialog.class);
                     intent.putStringArrayListExtra(Constants.PRODUCT_DATA,productData);
 
