@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:background="@drawable/main_bg"
+    android:background="@drawable/main_bg_white"
     android:fillViewport="true"
     >
     <RelativeLayout
@@ -23,7 +23,7 @@
             android:textSize="24dp"
             android:textStyle="bold"
             android:layout_centerHorizontal="true"
-            android:visibility="gone"/>
+            android:visibility="visible"/>
 
         <TextView android:id="@+id/screen_main_secondary_text"
             android:text="Social Online Payment Ltd"
@@ -36,7 +36,7 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:gravity="center"
-            android:visibility="gone"
+            android:visibility="visible"
             android:layout_below="@+id/screen_main_text"
             android:layout_centerHorizontal="true"
             />
@@ -52,9 +52,22 @@
             android:textColor="@android:color/black"
             android:textSize="20dp"
             android:textStyle="bold"
-            android:visibility="gone"
+            android:visibility="visible"
             android:layout_below="@+id/screen_main_secondary_text"
             />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="20dp">
+            <include
+                android:id="@+id/touch_layout"
+                layout="@layout/fingerprint_dialog_container_2" />
+
+        </RelativeLayout>
 
         <LinearLayout
             android:id="@+id/bottom_contianer"
@@ -77,23 +90,18 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="1dp"
                 android:gravity="center"
+                android:layout_margin="10dp"
                 android:text="You have a 14 days right of withdrawl form your purchase. If you want to exercise your right of withdrawl click here for more information."
                 android:textColor="@android:color/black"
-                android:textSize="16dp"
-                android:visibility="gone"/>
-
-            <TextView
-                android:id="@+id/terms_and_conditions"
-                android:layout_width="wrap_content"
+                android:textSize="14dp"
+                android:visibility="visible"/>
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="1dp"
-                android:gravity="center"
-                android:text="Terms and Conditions"
-                android:textColor="@android:color/black"
-                android:textSize="16dp"
-                android:visibility="gone"/>
+                android:orientation="horizontal"
+                android:gravity="center_horizontal">
+
+
 
             <TextView
                 android:id="@+id/help_text"
@@ -103,10 +111,23 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="1dp"
                 android:gravity="center"
-                android:text=""
+                android:text="Help | "
                 android:textColor="@android:color/black"
-                android:textSize="16dp"
-                android:visibility="gone"/>
+                android:textSize="18dp"
+                android:visibility="visible"/>
+                <TextView
+                    android:id="@+id/terms_and_conditions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="1dp"
+                    android:gravity="center"
+                    android:text="Terms and Conditions"
+                    android:textColor="@android:color/black"
+                    android:textSize="18dp"
+                    android:visibility="visible"/>
+            </LinearLayout>
         </LinearLayout>
 
     </RelativeLayout>

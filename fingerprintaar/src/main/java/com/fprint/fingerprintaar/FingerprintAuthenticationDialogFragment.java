@@ -17,6 +17,7 @@
 package com.fprint.fingerprintaar;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.KeyguardManager;
 import android.content.Context;
@@ -128,6 +129,7 @@ public class FingerprintAuthenticationDialogFragment extends DialogFragment
         }
         return v;
     }
+
 
     @Override
     public void onResume() {

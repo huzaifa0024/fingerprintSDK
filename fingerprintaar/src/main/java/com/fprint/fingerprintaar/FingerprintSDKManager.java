@@ -6,9 +6,10 @@ import android.hardware.fingerprint.FingerprintManager;
 import android.os.Build;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
- * Created by GlobalCharge on 27/12/2018.
+ * Created by Syed Huzaifa on 27/12/2018.
  */
 public class FingerprintSDKManager implements SecuritySettingsSelectedListener,Serializable {
     private Context mContext;
@@ -18,12 +19,14 @@ public class FingerprintSDKManager implements SecuritySettingsSelectedListener,S
     private FingerprintUiHelper mFingerprintUiHelper;
     private FingerprintCallBacks callBacks;
     private boolean bypassAuthProcess;
+    private ArrayList<String> productData;
 
 
     private FingerprintSDKManager(FingerprintSDKManager.Builder builder) {
         this.mContext = builder.mContext;
         this.callBacks = builder.callBacks;
         this.bypassAuthProcess = builder.bypassAuthProcess;
+        this.productData = builder.productData;
 
     }
 
@@ -38,6 +41,7 @@ public class FingerprintSDKManager implements SecuritySettingsSelectedListener,S
         Context mContext;
         FingerprintCallBacks callBacks;
         boolean bypassAuthProcess;
+        ArrayList<String> productData;
 
         public Builder(Context context) {
             this.mContext = context;
@@ -57,6 +61,10 @@ public class FingerprintSDKManager implements SecuritySettingsSelectedListener,S
 
         public FingerprintSDKManager.Builder setBypassSDK(boolean bypass) {
             this.bypassAuthProcess = bypass;
+            return this;
+        }
+        public FingerprintSDKManager.Builder setProductData(ArrayList<String> productData) {
+            this.productData = productData;
             return this;
         }
 
@@ -116,7 +124,23 @@ public class FingerprintSDKManager implements SecuritySettingsSelectedListener,S
 
             } else {
 
-                Intent intent = new Intent(mContext, FingerPrintAvailableActivity.class);
+                //need to check if the requirement is to show the full screen along with text coming from server i-e terms and conditions,title and contact info etc
+                //in that case we need to show full screen activity with fingerprint dialog's code inside the activity because the fingerprinnt dialog won't allow us to
+                //click the links coming from server and full screen dialogs don't match the screen design requested by the Denmark Team
+                //10th June 2019*****Added by Syed*****
+
+                Intent intent = null;
+
+                if(true){
+                    intent = new Intent(mContext, FingerPrintAvailableActivityWithoutDialog.class);
+                    intent.putStringArrayListExtra(Constants.PRODUCT_DATA,productData);
+
+                }
+
+                else {
+                    intent = new Intent(mContext, FingerPrintAvailableActivity.class);
+                }
+
                 HolderClass.setManager(this);
 
                 mContext.startActivity(intent);

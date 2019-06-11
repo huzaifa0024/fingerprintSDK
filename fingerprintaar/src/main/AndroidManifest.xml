@@ -9,6 +9,9 @@
         <activity android:name=".FingerPrintAvailableActivity"
             android:theme="@style/AppTheme">
         </activity>
+        <activity android:name=".FingerPrintAvailableActivityWithoutDialog"
+            android:theme="@style/AppTheme">
+        </activity>
     </application>
 
 </manifest>

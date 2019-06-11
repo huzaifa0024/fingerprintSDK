@@ -13,8 +13,11 @@ import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyPermanentlyInvalidatedException;
 import android.security.keystore.KeyProperties;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
+import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -54,6 +57,7 @@ public class FingerPrintAvailableActivity extends SuperActivity implements Secur
     private FingerprintUiHelper mFingerprintUiHelper;
 
     private FingerprintSDKManager manager;
+
     int colorYellow;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +76,7 @@ public class FingerPrintAvailableActivity extends SuperActivity implements Secur
         setStatusBarColor("#2f2f2f");
 
     }
+
 
 
     private void initFingerPrint(){

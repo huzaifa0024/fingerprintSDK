@@ -7,6 +7,7 @@
     <string name="ok">OK</string>
     <string name="password">Password</string>
     <string name="fingerprint_description">Confirm fingerprint to continue</string>
+    <string name="fingerprint_description_2">Confirm fingerprint to subscribe</string>
     <string name="fingerprint_hint">Touch sensor</string>
     <string name="password_description">Enter your store password to continue</string>
     <string name="fingerprint_not_recognized">Fingerprint not recognized. Try again</string>

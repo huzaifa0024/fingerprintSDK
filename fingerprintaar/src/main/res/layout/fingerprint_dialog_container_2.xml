@@ -18,13 +18,16 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:background="@drawable/black_bordered_bg"
+    android:layout_marginLeft="20dp"
+
 >
 
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-        <include layout="@layout/fingerprint_dialog_content" />
+        <include layout="@layout/fingerprint_dialog_content_2" />
 
         <include
             layout="@layout/fingerprint_dialog_backup"
@@ -49,18 +52,20 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:visibility="invisible" />
+            android:visibility="visible" />
         <Button
             android:id="@+id/cancel_button"
             style="?android:attr/buttonBarNegativeButtonStyle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:text="@string/cancel"/>
 
         <Button
             android:id="@+id/second_dialog_button"
             style="?android:attr/buttonBarPositiveButtonStyle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:text="@string/use_pincode"/>
     </LinearLayout>
 
 </LinearLayout>
