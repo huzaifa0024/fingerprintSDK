@@ -14,9 +14,7 @@ import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyPermanentlyInvalidatedException;
 import android.security.keystore.KeyProperties;
 import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
 import android.text.method.LinkMovementMethod;
-import android.text.util.Linkify;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -96,6 +94,16 @@ public class FingerPrintAvailableActivityWithoutDialog extends SuperActivity imp
 
     private ArrayList<String> productData;
 
+    String titleText = "";
+    String subText = "";
+    String amount = "";
+    String warningName = "";
+    String warningUrl = "";
+    String temsAndCondTitle = "";
+    String termsAndCondUrl = "";
+    String helpName = "";
+    String helpUrl = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -125,37 +133,45 @@ public class FingerPrintAvailableActivityWithoutDialog extends SuperActivity imp
         termsAndConditions = (TextView) findViewById(R.id.terms_and_conditions);
         helpText = (TextView) findViewById(R.id.help_text);
 
+
         if(null!=productData && productData.size()>0) {
+            titleText = productData.get(0);
+            subText = productData.get(1);
+            amount = productData.get(2);
+            warningName = getName(productData.get(3));
+            warningUrl = getUrl(productData.get(3));
+            temsAndCondTitle = getName(productData.get(4));
+            termsAndCondUrl = getUrl(productData.get(4));
+            helpName = getName(productData.get(5));
+            helpUrl = getUrl(productData.get(5));
+
+
+
             mainText.setText(productData.get(0));
             secondaryText.setText(productData.get(1));
             amountToPay.setText(productData.get(2));
-        //    warningText.setText(productData.get(3));
-        //    termsAndConditions.setText(productData.get(4));
-        //    helpText.setText(productData.get(5));
+            warningText.setText(warningName);
+            termsAndConditions.setText(temsAndCondTitle!=null && temsAndCondTitle.length()>0 ? temsAndCondTitle:"");
+            helpText.setText(helpName!=null && helpName.length()>0 ? helpName:"");
+
         }
 
         termsAndConditions.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(null!=productData.get(4)
-                        && productData.get(4).length()>0
-                        && (productData.get(4).contains("http")
-                        || productData.get(4).contains("https")))
-                {
-                    termsAndConditions.setMovementMethod(LinkMovementMethod.getInstance());
-                    termsAndConditions.setOnClickListener(new View.OnClickListener() {
-                        public void onClick(View v) {
-                            Intent browserIntent = new Intent(Intent.ACTION_VIEW);
-                            browserIntent.setData(Uri.parse(productData.get(4)));
-                            startActivity(browserIntent);
-                        }
-                    });
+                if(null!= termsAndCondUrl
+                        && termsAndCondUrl.length()>0
+                        && (termsAndCondUrl.contains("http")
+                        || productData.get(4).contains("https"))) {
+
+                        openWebPage(productData.get(4));
+
                 }
-                else if(null!=productData.get(4)
-                        && productData.get(4).length()>0) {
+                else if(null!=termsAndCondUrl
+                        && termsAndCondUrl.length()>0) {
 
                     Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-                            "mailto",productData.get(4), null));
+                            "mailto",termsAndCondUrl, null));
                     emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Subject");
                     emailIntent.putExtra(Intent.EXTRA_TEXT, "Body");
                     startActivity(Intent.createChooser(emailIntent, "Send email..."));
@@ -168,25 +184,19 @@ public class FingerPrintAvailableActivityWithoutDialog extends SuperActivity imp
         warningText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(null!=productData.get(3)
-                        && productData.get(3).length()>0
-                        && (productData.get(3).contains("http")
-                        || productData.get(3).contains("https")))
-                {
-                    warningText.setMovementMethod(LinkMovementMethod.getInstance());
-                    warningText.setOnClickListener(new View.OnClickListener() {
-                        public void onClick(View v) {
-                            Intent browserIntent = new Intent(Intent.ACTION_VIEW);
-                            browserIntent.setData(Uri.parse(productData.get(4)));
-                            startActivity(browserIntent);
-                        }
-                    });
+                if(null!=warningUrl
+                        && warningUrl.length()>0
+                        && (warningUrl.contains("http")
+                        || warningUrl.contains("https"))) {
+
+                          openWebPage(warningUrl);
+
                 }
-                else if(null!=productData.get(3)
-                        && productData.get(3).length()>0) {
+                else if(null!=warningUrl
+                        && warningUrl.length()>0) {
 
                     Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-                            "mailto",productData.get(3), null));
+                            "mailto",warningUrl, null));
                     emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Subject");
                     emailIntent.putExtra(Intent.EXTRA_TEXT, "Body");
                     startActivity(Intent.createChooser(emailIntent, "Send email..."));
@@ -197,25 +207,18 @@ public class FingerPrintAvailableActivityWithoutDialog extends SuperActivity imp
         helpText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(null!=productData.get(5)
-                        && productData.get(4).length()>0
-                        && (productData.get(4).contains("http")
-                        || productData.get(4).contains("https")))
-                {
-                    helpText.setMovementMethod(LinkMovementMethod.getInstance());
-                    helpText.setOnClickListener(new View.OnClickListener() {
-                        public void onClick(View v) {
-                            Intent browserIntent = new Intent(Intent.ACTION_VIEW);
-                            browserIntent.setData(Uri.parse(productData.get(5)));
-                            startActivity(browserIntent);
-                        }
-                    });
+                if(null!=helpUrl
+                        && helpUrl.length()>0
+                        && (helpUrl.contains("http")
+                        || helpUrl.contains("https"))) {
+                    openWebPage(helpUrl);
+
                 }
-                else if(null!=productData.get(5)
-                        && productData.get(5).length()>0) {
+                else if(null!=helpUrl
+                        && helpUrl.length()>0) {
 
                     Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-                            "mailto",productData.get(5), null));
+                            "mailto",helpUrl, null));
                     emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Subject");
                     emailIntent.putExtra(Intent.EXTRA_TEXT, "Body");
                     startActivity(Intent.createChooser(emailIntent, "Send email..."));
@@ -463,6 +466,8 @@ public class FingerPrintAvailableActivityWithoutDialog extends SuperActivity imp
 
             // Show the fingerprint dialog. The user has the option to use the fingerprint with
             // crypto, or you can fall back to using a server-side verified password.
+            mCryptoObject = new android.hardware.fingerprint.FingerprintManager.CryptoObject(mCipher);
+
             boolean useFingerprintPreference = mSharedPreferences
                     .getBoolean(this.getString(R.string.use_fingerprint_to_authenticate_key),
                             true);
@@ -668,5 +673,36 @@ public class FingerPrintAvailableActivityWithoutDialog extends SuperActivity imp
         FINGERPRINT,
         NEW_FINGERPRINT_ENROLLED,
         PASSWORD
+    }
+
+    public void openWebPage(String url) {
+
+        Uri webpage = Uri.parse(url);
+
+        if (!url.startsWith("http://") && !url.startsWith("https://")) {
+            webpage = Uri.parse("http://" + url);
+        }
+
+        Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
+    }
+
+    private String getName(String data){
+        String[] tempArray = null;
+        if(data!=null && data.length()>0 && data.contains("----")){
+            tempArray = data.split("----");
+        }
+        return tempArray!=null?tempArray[0]:"";
+
+    }
+    private String getUrl(String data){
+        String[] tempArray = null;
+        if(data!=null && data.length()>0 && data.contains("----")){
+            tempArray = data.split("----");
+        }
+        return tempArray!=null?tempArray[1]:"";
+
     }
 }

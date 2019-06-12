@@ -11,6 +11,9 @@ import com.fprint.fingerprintaar.FingerprintCallBacks;
 import com.fprint.fingerprintaar.FingerprintSDKManager;
 import com.fprint.fingerprintaar.SuperActivity;
 
+import java.util.ArrayList;
+import java.util.Currency;
+
 
 public class MainActivity extends AppCompatActivity implements FingerprintCallBacks {
 
@@ -19,7 +22,7 @@ public class MainActivity extends AppCompatActivity implements FingerprintCallBa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FingerprintSDKManager manager = new FingerprintSDKManager.Builder(MainActivity.this).setBypassSDK(false).setCallBacks(this).build();
+        FingerprintSDKManager manager = new FingerprintSDKManager.Builder(MainActivity.this).setProductData(getProductsRelatedDataForWebAuthPage()).setShowFpInsideActivity(true).setBypassSDK(false).setCallBacks(this).build();
 
        //when u wanna show the dialog
         manager.startFingerprintAuthProcess();
@@ -77,5 +80,25 @@ public class MainActivity extends AppCompatActivity implements FingerprintCallBa
                 Toast.makeText(this, "Incorrect pincode entered", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    private ArrayList<String> getProductsRelatedDataForWebAuthPage(){
+
+
+
+        ArrayList<String> productExtraData = new ArrayList<>();
+
+        productExtraData.add("Badoo Premium");
+        productExtraData.add("Social Online Payment Ltd.");
+        String productLabel = "test product";
+
+        productExtraData.add(productLabel);
+        productExtraData.add("Warning Text"+"----"+"http://eu1.badoo.com/terms/");
+        productExtraData.add("Vilkår og betingelser (betalinger)"+"----"+"http://eu1.badoo.com/terms/");
+        productExtraData.add("Help | "+"----"+"kontakt@message-mobile.de");
+
+
+        return productExtraData;
+
     }
 }
