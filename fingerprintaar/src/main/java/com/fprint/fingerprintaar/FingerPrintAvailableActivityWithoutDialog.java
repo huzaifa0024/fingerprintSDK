@@ -80,6 +80,9 @@ public class FingerPrintAvailableActivityWithoutDialog extends SuperActivity imp
     private CheckBox mUseFingerprintFutureCheckBox;
     private TextView mPasswordDescriptionTextView;
     private TextView mNewFingerprintEnrolledTextView;
+    private TextView mDialogTitleTextView;
+    private TextView mDialogSubTitleTextView;
+    private TextView sensorTextView;
     private FingerprintCallBacks fingerprintCallBack;
     private FingerprintSDKManager fpSDKManager;
 
@@ -92,10 +95,13 @@ public class FingerPrintAvailableActivityWithoutDialog extends SuperActivity imp
     private InputMethodManager mInputMethodManager;
     private SharedPreferences mSharedPreferences;
 
-    private ArrayList<String> productData;
+    private FingerprintDataObject fpData;
 
     String titleText = "";
     String subText = "";
+    String dialogTitle = "";
+    String dialogSubTitle = "";
+    String sensorText = "";
     String amount = "";
     String warningName = "";
     String warningUrl = "";
@@ -113,8 +119,8 @@ public class FingerPrintAvailableActivityWithoutDialog extends SuperActivity imp
 
         Bundle extras = getIntent().getExtras();
 
-        if (extras.containsKey(Constants.PRODUCT_DATA)) {
-            productData = (ArrayList<String>) extras.getSerializable(Constants.PRODUCT_DATA);
+        if (extras.containsKey(Constants.FP)) {
+            fpData = (FingerprintDataObject) extras.getSerializable(Constants.FP);
         }
 
 
@@ -126,6 +132,8 @@ public class FingerPrintAvailableActivityWithoutDialog extends SuperActivity imp
 
         setStatusBarColor("#2f2f2f");
 
+
+
         mainText = (TextView) findViewById(R.id.screen_main_text);
         secondaryText = (TextView) findViewById(R.id.screen_main_secondary_text);
         amountToPay = (TextView) findViewById(R.id.amount_to_pay);
@@ -133,23 +141,37 @@ public class FingerPrintAvailableActivityWithoutDialog extends SuperActivity imp
         termsAndConditions = (TextView) findViewById(R.id.terms_and_conditions);
         helpText = (TextView) findViewById(R.id.help_text);
 
-
-        if(null!=productData && productData.size()>0) {
-            titleText = productData.get(0);
-            subText = productData.get(1);
-            amount = productData.get(2);
-            warningName = getName(productData.get(3));
-            warningUrl = getUrl(productData.get(3));
-            temsAndCondTitle = getName(productData.get(4));
-            termsAndCondUrl = getUrl(productData.get(4));
-            helpName = getName(productData.get(5));
-            helpUrl = getUrl(productData.get(5));
+        mDialogTitleTextView = (TextView) findViewById(R.id.purchase);
+        mDialogSubTitleTextView = (TextView) findViewById(R.id.fingerprint_description);
+        sensorTextView = (TextView) findViewById(R.id.fingerprint_status);
+        mCancelButton = (Button) findViewById(R.id.cancel_button);
+        mSecondDialogButton = (Button) findViewById(R.id.second_dialog_button);
 
 
+        if(null!=fpData ) {
+            mCancelButton.setText(fpData.getCancelText());
+            mSecondDialogButton.setText(fpData.getPincodeText());
+            titleText =fpData.getTitle();
+            subText = fpData.getSubTitle();
+            dialogTitle =fpData.getDialogTitle();
+            dialogSubTitle = fpData.getDialogSubTitle();
+            amount = fpData.getAmout();
+            sensorText = fpData.getTouchSensor_text();
+            warningName = fpData.getWarningText();
+            warningUrl = fpData.getWarningUrl();
+            temsAndCondTitle = fpData.getTermsAndCondition();
+            termsAndCondUrl = fpData.getTermsAndConditionUrl();
+            helpName = fpData.getHelpText();
+            helpUrl = fpData.getHelpUrl();
 
-            mainText.setText(productData.get(0));
-            secondaryText.setText(productData.get(1));
-            amountToPay.setText(productData.get(2));
+
+
+            mainText.setText(titleText);
+            secondaryText.setText(subText);
+            mDialogTitleTextView.setText(dialogTitle);
+            mDialogSubTitleTextView.setText(dialogSubTitle);
+            sensorTextView.setText(sensorText);
+            amountToPay.setText(amount);
             warningText.setText(warningName);
             termsAndConditions.setText(temsAndCondTitle!=null && temsAndCondTitle.length()>0 ? temsAndCondTitle:"");
             helpText.setText(helpName!=null && helpName.length()>0 ? helpName:"");
@@ -162,9 +184,9 @@ public class FingerPrintAvailableActivityWithoutDialog extends SuperActivity imp
                 if(null!= termsAndCondUrl
                         && termsAndCondUrl.length()>0
                         && (termsAndCondUrl.contains("http")
-                        || productData.get(4).contains("https"))) {
+                        || termsAndCondUrl.contains("https"))) {
 
-                        openWebPage(productData.get(4));
+                        openWebPage(termsAndCondUrl);
 
                 }
                 else if(null!=termsAndCondUrl
@@ -499,6 +521,8 @@ public class FingerPrintAvailableActivityWithoutDialog extends SuperActivity imp
 
         initFingerPrint();
 
+        initViews();
+
         if (null!= mFingerprintUiHelper && mStage == Stages.FINGERPRINT) {
             mFingerprintUiHelper.startListening(mCryptoObject);
         }
@@ -689,20 +713,4 @@ public class FingerPrintAvailableActivityWithoutDialog extends SuperActivity imp
         }
     }
 
-    private String getName(String data){
-        String[] tempArray = null;
-        if(data!=null && data.length()>0 && data.contains("----")){
-            tempArray = data.split("----");
-        }
-        return tempArray!=null?tempArray[0]:"";
-
-    }
-    private String getUrl(String data){
-        String[] tempArray = null;
-        if(data!=null && data.length()>0 && data.contains("----")){
-            tempArray = data.split("----");
-        }
-        return tempArray!=null?tempArray[1]:"";
-
-    }
 }

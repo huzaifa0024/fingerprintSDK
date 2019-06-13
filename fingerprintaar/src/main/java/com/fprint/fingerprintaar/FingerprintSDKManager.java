@@ -20,7 +20,7 @@ public class FingerprintSDKManager implements SecuritySettingsSelectedListener,S
     private FingerprintCallBacks callBacks;
     private boolean bypassAuthProcess;
     private boolean showFPInsideActivity;
-    private ArrayList<String> productData;
+    private FingerprintDataObject fpDataObject;
 
 
     private FingerprintSDKManager(FingerprintSDKManager.Builder builder) {
@@ -28,7 +28,7 @@ public class FingerprintSDKManager implements SecuritySettingsSelectedListener,S
         this.callBacks = builder.callBacks;
         this.showFPInsideActivity = builder.showFPInsideActivity;
         this.bypassAuthProcess = builder.bypassAuthProcess;
-        this.productData = builder.productData;
+        this.fpDataObject = builder.fpDataObject;
 
     }
 
@@ -44,7 +44,7 @@ public class FingerprintSDKManager implements SecuritySettingsSelectedListener,S
         FingerprintCallBacks callBacks;
         boolean bypassAuthProcess;
         boolean showFPInsideActivity = false;
-        ArrayList<String> productData;
+        FingerprintDataObject fpDataObject;
 
         public Builder(Context context) {
             this.mContext = context;
@@ -71,8 +71,8 @@ public class FingerprintSDKManager implements SecuritySettingsSelectedListener,S
             this.bypassAuthProcess = bypass;
             return this;
         }
-        public FingerprintSDKManager.Builder setProductData(ArrayList<String> productData) {
-            this.productData = productData;
+        public FingerprintSDKManager.Builder setFpData(FingerprintDataObject fpDataObject) {
+            this.fpDataObject = fpDataObject;
             return this;
         }
 
@@ -142,7 +142,7 @@ public class FingerprintSDKManager implements SecuritySettingsSelectedListener,S
                 if(showFPInsideActivity){
 
                     intent = new Intent(mContext, FingerPrintAvailableActivityWithoutDialog.class);
-                    intent.putStringArrayListExtra(Constants.PRODUCT_DATA,productData);
+                    intent.putExtra(Constants.FP,fpDataObject);
 
                 }
 

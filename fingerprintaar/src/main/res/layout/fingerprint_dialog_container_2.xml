@@ -19,7 +19,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@drawable/black_bordered_bg"
-    android:layout_marginLeft="20dp"
+    android:layout_marginLeft="0dp"
 
 >
 

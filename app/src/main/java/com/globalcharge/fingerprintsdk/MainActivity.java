@@ -8,6 +8,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.fprint.fingerprintaar.FingerprintCallBacks;
+import com.fprint.fingerprintaar.FingerprintDataObject;
 import com.fprint.fingerprintaar.FingerprintSDKManager;
 import com.fprint.fingerprintaar.SuperActivity;
 
@@ -22,7 +23,7 @@ public class MainActivity extends AppCompatActivity implements FingerprintCallBa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FingerprintSDKManager manager = new FingerprintSDKManager.Builder(MainActivity.this).setProductData(getProductsRelatedDataForWebAuthPage()).setShowFpInsideActivity(true).setBypassSDK(false).setCallBacks(this).build();
+        FingerprintSDKManager manager = new FingerprintSDKManager.Builder(MainActivity.this).setFpData(getFprintData()).setShowFpInsideActivity(true).setBypassSDK(false).setCallBacks(this).build();
 
        //when u wanna show the dialog
         manager.startFingerprintAuthProcess();
@@ -82,23 +83,22 @@ public class MainActivity extends AppCompatActivity implements FingerprintCallBa
         }
     }
 
-    private ArrayList<String> getProductsRelatedDataForWebAuthPage(){
+    private FingerprintDataObject getFprintData(){
 
 
 
-        ArrayList<String> productExtraData = new ArrayList<>();
+        FingerprintDataObject fp = new FingerprintDataObject();
+        fp.setDialogSubTitle("zaapp");
+        fp.setDialogTitle("TTzaapp");
+        fp.setHelpText("nigga");
+        fp.setWarningText("nigga");
+        fp.setTermsAndCondition("tteeerrr");
+        fp.setAmout("20 pounds");
+        fp.setCancelText("20 pounds");
+        fp.setPincodeText("Peen");
+        fp.setTouchSensorText("whats uppp");
 
-        productExtraData.add("Badoo Premium");
-        productExtraData.add("Social Online Payment Ltd.");
-        String productLabel = "test product";
-
-        productExtraData.add(productLabel);
-        productExtraData.add("Warning Text"+"----"+"http://eu1.badoo.com/terms/");
-        productExtraData.add("Vilkår og betingelser (betalinger)"+"----"+"http://eu1.badoo.com/terms/");
-        productExtraData.add("Help | "+"----"+"kontakt@message-mobile.de");
-
-
-        return productExtraData;
+        return fp;
 
     }
 }
