@@ -20,7 +20,8 @@ public class FingerprintSDKManager implements SecuritySettingsSelectedListener,S
     private FingerprintCallBacks callBacks;
     private boolean bypassAuthProcess;
     private boolean showFPInsideActivity;
-    private FingerprintDataObject fpDataObject;
+    private String fpDataObject;
+    private long timeOut = 0l;
 
 
     private FingerprintSDKManager(FingerprintSDKManager.Builder builder) {
@@ -29,7 +30,7 @@ public class FingerprintSDKManager implements SecuritySettingsSelectedListener,S
         this.showFPInsideActivity = builder.showFPInsideActivity;
         this.bypassAuthProcess = builder.bypassAuthProcess;
         this.fpDataObject = builder.fpDataObject;
-
+        this.timeOut = builder.timeOut;
     }
 
     private void initDefaultValues() {
@@ -44,7 +45,8 @@ public class FingerprintSDKManager implements SecuritySettingsSelectedListener,S
         FingerprintCallBacks callBacks;
         boolean bypassAuthProcess;
         boolean showFPInsideActivity = false;
-        FingerprintDataObject fpDataObject;
+        String fpDataObject;
+        long timeOut = 0l;
 
         public Builder(Context context) {
             this.mContext = context;
@@ -71,8 +73,13 @@ public class FingerprintSDKManager implements SecuritySettingsSelectedListener,S
             this.bypassAuthProcess = bypass;
             return this;
         }
-        public FingerprintSDKManager.Builder setFpData(FingerprintDataObject fpDataObject) {
+        public FingerprintSDKManager.Builder setFpData(String fpDataObject) {
             this.fpDataObject = fpDataObject;
+            return this;
+        }
+
+        public FingerprintSDKManager.Builder setTimeOut(long timeOut) {
+            this.timeOut = timeOut;
             return this;
         }
 
@@ -164,4 +171,12 @@ public class FingerprintSDKManager implements SecuritySettingsSelectedListener,S
         return callBacks;
     }
 
+
+    public long getTimeOut() {
+        return timeOut;
+    }
+
+    public void setTimeOut(long timeOut) {
+        this.timeOut = timeOut;
+    }
 }

@@ -12,51 +12,77 @@
     <RelativeLayout
         android:layout_height="match_parent"
         android:layout_width="match_parent"
+        android:layout_gravity="center_vertical"
         >
-        <TextView
-            android:id="@+id/screen_main_text"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/top_container"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Badoo Premium"
-            android:textColor="@android:color/black"
-            android:textSize="24dp"
-            android:textStyle="bold"
-            android:layout_centerHorizontal="true"
-            android:visibility="visible"/>
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_above="@+id/middle_container"
+            android:layout_marginBottom="15dp">
 
-        <TextView android:id="@+id/screen_main_secondary_text"
-            android:text="Social Online Payment Ltd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/black"
-            android:textSize="17dp"
-            android:textStyle="normal"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:gravity="center"
-            android:visibility="visible"
-            android:layout_below="@+id/screen_main_text"
-            android:layout_centerHorizontal="true"
-            />
+            <ImageView
+                android:id="@+id/screen_logo_premium"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_global_spp"
+                android:layout_gravity="center_horizontal|top"
+                android:layout_centerInParent="true"
+                android:layout_alignParentTop="true"
+                android:visibility="visible"
+                android:layout_marginBottom="10dp"
+                />
 
-        <TextView
-            android:id="@+id/amount_to_pay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="16dp"
-            android:gravity="center"
-            android:text="20 pounds"
-            android:textColor="@android:color/black"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:visibility="visible"
-            android:layout_below="@+id/screen_main_secondary_text"
-            />
+            <TextView
+                android:id="@+id/screen_main_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Badoo Premium"
+                android:textColor="@android:color/black"
+                android:textSize="24dp"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"
+                android:visibility="visible"/>
+
+            <TextView android:id="@+id/screen_main_secondary_text"
+                android:text="Social Online Payment Ltd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:textSize="17dp"
+                android:textStyle="normal"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:gravity="center"
+                android:visibility="visible"
+                android:layout_below="@+id/screen_main_text"
+                android:layout_centerHorizontal="true"
+                />
+
+            <TextView
+                android:id="@+id/amount_to_pay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:text="20 pounds"
+                android:textColor="@android:color/black"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:visibility="visible"
+                android:layout_below="@+id/screen_main_secondary_text"
+                />
+
+        </LinearLayout>
 
         <RelativeLayout
+            android:id="@+id/middle_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
@@ -74,11 +100,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
 
             android:layout_marginBottom="10dp"
             android:gravity="center"
-            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/middle_container"
             android:orientation="vertical">
 
 
@@ -100,7 +126,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center_horizontal">
+                android:gravity="center_horizontal"
+                >
 
 
 
@@ -115,21 +142,21 @@
                 android:text="Help | "
                 android:clickable="true"
                 android:textColor="@android:color/black"
-                android:textSize="18dp"
+                android:textSize="16dp"
                 android:visibility="visible"/>
-                <TextView
-                    android:id="@+id/terms_and_conditions"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="1dp"
-                    android:gravity="center"
-                    android:text="Terms and Conditions"
-                    android:textColor="@android:color/black"
-                    android:textSize="18dp"
-                    android:clickable="true"
-                    android:visibility="visible"/>
+            <TextView
+                android:id="@+id/terms_and_conditions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="1dp"
+                android:gravity="center"
+                android:text="Terms and Conditions"
+                android:textColor="@android:color/black"
+                android:textSize="16dp"
+                android:clickable="true"
+                android:visibility="visible"/>
             </LinearLayout>
         </LinearLayout>
 

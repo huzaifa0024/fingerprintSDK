@@ -23,4 +23,6 @@ public interface FingerprintCallBacks {
 
     void onCancelled();
 
+    void onTimeOut();
+
 }

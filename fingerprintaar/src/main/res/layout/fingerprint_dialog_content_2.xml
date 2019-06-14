@@ -26,12 +26,13 @@
 
     <TextView
         android:id="@+id/purchase"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/fingerprint_description"
         android:layout_centerVertical="true"
         android:layout_alignParentTop="true"
         android:gravity="center"
+        android:layout_centerHorizontal="true"
         android:text="Purchase"
         android:textColor="@android:color/black"
         android:textSize="20dp"
@@ -39,10 +40,11 @@
         android:visibility="visible" />
     <TextView
         android:id="@+id/fingerprint_description"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_below="@+id/purchase"
+        android:gravity="center"
         android:text="@string/fingerprint_description_2"
         android:textAppearance="@android:style/TextAppearance.Material.Subhead"
         android:textColor="@android:color/black"/>

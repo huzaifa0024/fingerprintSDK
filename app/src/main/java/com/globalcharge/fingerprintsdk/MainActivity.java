@@ -11,6 +11,7 @@ import com.fprint.fingerprintaar.FingerprintCallBacks;
 import com.fprint.fingerprintaar.FingerprintDataObject;
 import com.fprint.fingerprintaar.FingerprintSDKManager;
 import com.fprint.fingerprintaar.SuperActivity;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.Currency;
@@ -23,7 +24,8 @@ public class MainActivity extends AppCompatActivity implements FingerprintCallBa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FingerprintSDKManager manager = new FingerprintSDKManager.Builder(MainActivity.this).setFpData(getFprintData()).setShowFpInsideActivity(true).setBypassSDK(false).setCallBacks(this).build();
+        FingerprintSDKManager manager = new FingerprintSDKManager.Builder(MainActivity.this).setFpData(getFprintData())
+                .setTimeOut(10000).setShowFpInsideActivity(true).setBypassSDK(false).setCallBacks(this).build();
 
        //when u wanna show the dialog
         manager.startFingerprintAuthProcess();
@@ -72,6 +74,11 @@ public class MainActivity extends AppCompatActivity implements FingerprintCallBa
     }
 
     @Override
+    public void onTimeOut() {
+        Log.d("fingerprint","timedOut");
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1234) {
             if (resultCode == RESULT_OK) {
@@ -83,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements FingerprintCallBa
         }
     }
 
-    private FingerprintDataObject getFprintData(){
+    private String getFprintData(){
 
 
 
@@ -98,7 +105,8 @@ public class MainActivity extends AppCompatActivity implements FingerprintCallBa
         fp.setPincodeText("Peen");
         fp.setTouchSensorText("whats uppp");
 
-        return fp;
+        Gson gson = new Gson();
+        return gson.toJson(fp);
 
     }
 }

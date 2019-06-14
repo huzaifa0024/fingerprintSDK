@@ -28,6 +28,8 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
 import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
@@ -58,6 +60,8 @@ public class FingerPrintAvailableActivityWithoutDialog extends SuperActivity imp
     static final String DEFAULT_KEY_NAME = "default_key";
 
     final Handler handler = new Handler();
+
+    Gson gson = new Gson();
 
 
     private KeyStore mKeyStore;
@@ -96,6 +100,7 @@ public class FingerPrintAvailableActivityWithoutDialog extends SuperActivity imp
     private SharedPreferences mSharedPreferences;
 
     private FingerprintDataObject fpData;
+    private String fpStringData;
 
     String titleText = "";
     String subText = "";
@@ -120,8 +125,20 @@ public class FingerPrintAvailableActivityWithoutDialog extends SuperActivity imp
         Bundle extras = getIntent().getExtras();
 
         if (extras.containsKey(Constants.FP)) {
-            fpData = (FingerprintDataObject) extras.getSerializable(Constants.FP);
+            fpStringData =  extras.getString(Constants.FP);
+
+            fpData = gson.fromJson(fpStringData, FingerprintDataObject.class);
         }
+//we need to finish this activity after 3 mins
+        handler.postDelayed(new Runnable() {
+            public void run() {
+               if(!FingerPrintAvailableActivityWithoutDialog.this.isFinishing()) {
+                   manager.getCallBacks().onTimeOut();
+                   finish();
+
+               }
+            }
+        }, manager.getTimeOut());
 
 
     }
